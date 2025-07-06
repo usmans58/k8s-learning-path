@@ -3,17 +3,17 @@ kind: ReplicaSet
 metadata:
   name: kuard-replicaset
   labels:
-    app: kuard
-    type: web
+    app: kuard-website # Label used to identify the replica set
+    type: website
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: kuard
+      app: kuard # Label used to select pods for this ReplicaSet
       type: web
   template:
     metadata:
-      name: kuard
+      name: kuard # Name of the pod
       labels:
         app: kuard
         type: web
