@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: kuard-replicaset
+  labels:
+    app: kuard
+    type: web
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: kuard
+      type: web
+  template:
+    metadata:
+      name: kuard
+      labels:
+        app: kuard
+        type: web
+    spec:
+      containers:
+      - name: kuard
+        image: gcr.io/kuar-demo/kuard-amd64:blue
+        ports:
+        - containerPort: 8080
+          name: http
+          protocol: TCP
