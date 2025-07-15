@@ -1,0 +1,24 @@
+#Apply deamon set with node selector to run on nodes with SSD storage=true
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: nginx-fast-storage
+  labels:
+    app: nginx
+    ssd: "true"
+spec:
+  selector:
+    matchLabels:
+      app: nginx
+      ssd: "true"
+  template:
+    metadata:
+      labels:
+        app: nginx
+        ssd: "true"
+    spec:
+      nodeSelector:
+        ssd: "true"
+      containers:
+      - name: nginx
+        image: nginx:1.10.0
